@@ -74,16 +74,8 @@ module.exports = {
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }
-    ],
-    postLoaders: [
-      { test: /vue-icons/, loader: 'callback-loader'}
     ]
   },
-  callbackLoader:
-    require('vue-icons/icon-loader')([
-      'material-cloud_queue',
-      'material-wb_sunny'
-    ]),
   eslint: {
     formatter: require('eslint-friendly-formatter')
   },

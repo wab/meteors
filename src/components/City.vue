@@ -1,13 +1,21 @@
 <template>
-  <h2>{{city}}</h2>
-  <map :coord.sync="LatLng"></map>
-  <pre>{{data | json}}</pre>
+
+  <div class="card">
+    <map class="activator" :coord.sync="LatLng"></map>
+    <div class="card-content">
+      <h2>{{city}}</h2>
+    </div>
+  </div>
+
 </template>
 
 <script>
 import Map from './Map'
+
 export default {
-  components: {Map},
+  components: {
+    Map
+  },
   props: {
     city: String
   },
@@ -51,6 +59,12 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
-
+<style lang="scss">
+  @import '../animations';
+  .card-content {
+    position: relative;
+  }
+  .infos {
+    position: relative;
+  }
 </style>

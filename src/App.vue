@@ -1,26 +1,30 @@
 <template>
   <div id="app">
-    <img class="logo" src="./assets/logo.png">
+    <logo></logo>
     <p></icon> Welcome to your <span>meteo</span> app ! </p>
-    <div class="select">
-      <input type="text" name="" v-model="city">
-      <button class="waves-effect waves-light btn" v-on:click="update">Voir <icon name="material-wb_sunny"></button>
-    </div>
+      <form v-on:submit="update">
+          <input id="city" type="text" class="" v-model="city">
+          <label class="active" for="city">City</label>
+        <div class="input-field">
+          
+          <button class="btn large">OK</button>
+        </div>
+      </form>
+      
     
-    
-    <city :city.sync="city"></city>
+    <city :city.sync="city"></city>    
     
   </div>
 </template>
 
 <script>
 import City from './components/City'
-import Icon from 'vue-icons'
+import Logo from './components/Logo'
 
 export default {
   components: {
     City,
-    Icon
+    Logo
   },
   data: function () {
     return {
@@ -28,10 +32,8 @@ export default {
     }
   },
   methods: {
-    sayGoodbye: function () {
-      console.log('goodbye!')
-    },
-    update () {
+    update (e) {
+      e.preventDefault()
       this.$broadcast('updateCity', this.city)
     }
   }
@@ -39,7 +41,9 @@ export default {
 </script>
 
 <style lang="scss">
-$primary-color: color("materialize-red", "lighten-2");
+
+//@import 'foundation';
+
 html {
   height: 100%;
 }
@@ -69,7 +73,6 @@ pre {
 }
 
 .logo {
-  width: 100px;
-  height: 100px
+  max-width: 300px;
 }
 </style>

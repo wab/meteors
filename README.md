@@ -1,6 +1,6 @@
-# meteo
+# wtest
 
-> landing page test for ReputationSquad
+> A Vue.js project
 
 ## Build Setup
 
