@@ -52,7 +52,7 @@ export default {
 <style lang="scss" scoped>
 	#map {
 		width: 100%;
-		height: 300px;
+		height: 200px;
     background: #eee;
 	}	
 </style>

@@ -1,3 +1,48 @@
-body {
-	background: #f4f4f4;
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+
+// Sass utilities
+@import 'foundation';
+@import 'settings';
+
+@import 'font-awesome';
+
+@include foundation-global-styles;
+@include foundation-typography;
+@include foundation-forms;
+@include foundation-button;
+@include foundation-top-bar;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+@include foundation-progress-element;
+
+.picto {
+  fill: $dark-gray;
+  height: 50px;
+}
+
+.stat {
+	color: $secondary-color;
+}
+
+.weather {
+	@include grid-row(12);
+
+	> div {
+		@include grid-col(4);
+		text-align: center;
+	}
+
+	.desc {
+		@include grid-col(12);
+		padding-bottom: 1rem;
+		margin-bottom: 1rem;
+		border-bottom: solid 1px $medium-gray;
+	}
+}
+
+.card {
+	padding: $global-padding;
+	background: $white;
+	border: solid 1px $medium-gray;
+	border-radius: $global-radius;
 }

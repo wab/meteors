@@ -65,4 +65,8 @@
   .squad {
     fill: #555;
   }
+
+  .logo {
+    max-width: 300px;
+  }
 </style>

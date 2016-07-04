@@ -1,17 +1,18 @@
 <template>
   <div id="app">
     <logo></logo>
-    <p></icon> Welcome to your <span>meteo</span> app ! </p>
-      <form v-on:submit="update">
-          <input id="city" type="text" class="" v-model="city">
-          <label class="active" for="city">City</label>
-        <div class="input-field">
-          
-          <button class="btn large">OK</button>
+    <p>Welcome to <span class="text-primary">meteors</span> app ! </p>
+    <form v-on:submit="update" class="cityform">
+       <div class="input-group">
+        <span class="input-group-label"><i class="fa fa-map-marker"></i></span>
+        <label class="show-for-sr" for="city">Select a city</label>
+        <input class="input-group-field" id="city" type="text" v-model="city">
+        <div class="input-group-button">
+          <input type="submit" class="button" value="Voir">
         </div>
-      </form>
-      
-    
+      </div>
+    </form>
+
     <city :city.sync="city"></city>    
     
   </div>
@@ -42,15 +43,13 @@ export default {
 
 <style lang="scss">
 
-//@import 'foundation';
-
 html {
   height: 100%;
 }
 
 body {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   height: 100%;
 }
@@ -60,19 +59,13 @@ pre {
 }
 
 #app {
-  color: #2c3e50;
-  max-width: 600px;
-  font-family: Source Sans Pro, Helvetica, sans-serif;
+  max-width: 500px;
   text-align: center;
-  flex-basis: 50%;
+  flex-basis: 60%;
 }
 
-#app a {
-  color: #42b983;
-  text-decoration: none;
+.cityform {
+  margin-bottom: 2rem;
 }
 
-.logo {
-  max-width: 300px;
-}
 </style>

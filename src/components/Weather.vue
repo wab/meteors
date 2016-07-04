@@ -1,5 +1,5 @@
 <template>
-		<i class="owf owf-fw owf-{{code}}-d"></i>
+		<span class="pull-right stat"><i class="owf owf-fw owf-{{code}}-d"></i></span>
 </template>
 
 <script>
@@ -25,10 +25,6 @@ import '../../bower_components/owfont/css/owfont-regular.css'
 	  url('../assets/fonts/owf/owfont-regular.svg#owf-regular') format('svg');
   font-weight: normal;
   font-style: normal;
-}
-
-i {
-	color: #333;
 }
 
 </style>
