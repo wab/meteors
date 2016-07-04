@@ -1,20 +1,31 @@
 <template>
 
   <div class="card">
-    <map class="activator" :coord.sync="LatLng"></map>
     <div class="card-content">
-      <h2>{{city}}</h2>
+      <header class="card-header">
+        <div v-for="data in [data]" transition="slidup">
+          <h2>{{city}}</h2>
+          <div class="weather">
+            <weather :code="code"></weather>
+            {{main.temp}} °C
+          </div>
+        </div>
+      </header>
+      <p>{{data.main | json }}</p>
     </div>
+    <map :coord.sync="LatLng"></map>
   </div>
 
 </template>
 
 <script>
 import Map from './Map'
+import Weather from './Weather'
 
 export default {
   components: {
-    Map
+    Map,
+    Weather
   },
   props: {
     city: String
@@ -22,9 +33,15 @@ export default {
   data () {
     return {
       data: {},
+      code: 0,
       LatLng: {
-        lat: 48.11,
-        lng: -1.68
+        lat: 0,
+        lng: 0
+      },
+      main: {
+        temp: '',
+        pressure: '',
+        humidity: ''
       }
     }
   },
@@ -37,7 +54,8 @@ export default {
           lat: this.data.coord.lat,
           lng: this.data.coord.lon
         }
-        console.log('getData : ' + JSON.stringify(this.data))
+        this.code = this.data.weather[0].id
+        this.main = this.data.main
       }, (response) => {
           // error callback
         console.log(response)
@@ -46,11 +64,9 @@ export default {
   },
   events: {
     'hook:created': function () {
-      console.log('init with Rennes')
       this.getData('Rennes')
     },
     updateCity: function (city) {
-      console.log(city)
       this.getData(city)
     }
   }
@@ -61,10 +77,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
   @import '../animations';
-  .card-content {
+
+  .card-header {
     position: relative;
+    min-height: 120px;
+    overflow: hidden;
   }
-  .infos {
-    position: relative;
+  .weather {
+    font-size: 2rem;
+    line-height: 1;
   }
 </style>

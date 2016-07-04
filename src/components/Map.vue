@@ -18,7 +18,7 @@ export default {
   methods: {
     loadMap () {
       var LatLng = this.coord
-      console.log('map load with : ' + JSON.stringify(LatLng))
+      console.log('map init with : ' + JSON.stringify(LatLng))
       GoogleMapsLoader.load(function (google) {
         /* eslint-disable no-new */
         global.map = new google.maps.Map(document.getElementById('map'), {
@@ -44,7 +44,6 @@ export default {
   },
   ready () {
     GoogleMapsLoader.KEY = 'AIzaSyCLb8bYvxTCYgV4EAgGD-atRN_fU_AwHvY'
-    console.log('init map')
     this.loadMap()
   }
 }

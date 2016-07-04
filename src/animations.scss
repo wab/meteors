@@ -1,20 +1,20 @@
-.slide-transition {
+.slidup-transition {
 	position: absolute;
 	top: 0;
 	left: 0;
 	bottom:0;
 	right: 0;
 	transition: all 0.3s ease;
-	transform: translateX(0);
+	transform: translateY(0);
 	opacity: 1
 }
 
-.slide-enter {
-	transform: translateX(100%);
+.slidup-enter {
+	transform: translateY(100%);
 	opacity: 0;
 }
 
-.slide-leave {
-	transform: translateX(-100%);
+.slidup-leave {
+	transform: translateY(-100%);
 	opacity: 0;
 }
