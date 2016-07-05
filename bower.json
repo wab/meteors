@@ -1,0 +1,22 @@
+{
+  "name": "meteors",
+  "description": "Test vueJs framework for reputationSquad",
+  "main": "",
+  "authors": [
+    "wab <contact@wabdesign.fr>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "^4.6.3",
+    "foundation-sites": "^6.2.3",
+    "owfont": "*"
+  }
+}
