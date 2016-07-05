@@ -1,6 +1,6 @@
-# wtest
+# Meteors
 
-> A Vue.js project
+> A Vue.js test
 
 ## Build Setup
 
