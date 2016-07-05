@@ -1,5 +1,5 @@
 <template>
-		<span class="pull-right stat"><i class="owf owf-fw owf-{{code}}-d"></i></span>
+		<span class="stat"><i class="owf owf-fw owf-{{code}}-d"></i></span>
 </template>
 
 <script>

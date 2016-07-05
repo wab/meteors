@@ -1,5 +1,7 @@
 <template>
-  <div id="map"></div>
+  <div class="map-wrapper">
+    <div id="map"></div>
+  </div>
 </template>
 
 <script>
@@ -50,9 +52,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .map-wrapper {
+    position: relative;
+    height: 200px;
+  }
 	#map {
 		width: 100%;
 		height: 200px;
-    background: #eee;
 	}	
 </style>

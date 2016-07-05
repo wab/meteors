@@ -1,14 +1,15 @@
 <template>
   <div id="app">
-    <logo></logo>
-    <p>Welcome to <span class="text-primary">meteors</span> app ! </p>
+    <p>Welcome to <span class="text-primary">meteors</span> app, an vueJs test for <logo></logo>
+</p>
     <form v-on:submit="update" class="cityform">
+      <label class="show-for-" for="city">Enter a city</label>
        <div class="input-group">
         <span class="input-group-label"><i class="fa fa-map-marker"></i></span>
-        <label class="show-for-sr" for="city">Select a city</label>
+        
         <input class="input-group-field" id="city" type="text" v-model="city">
         <div class="input-group-button">
-          <input type="submit" class="button" value="Voir">
+          <input type="submit" class="button" value="Voir les conditions">
         </div>
       </div>
     </form>
