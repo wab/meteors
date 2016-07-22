@@ -12,14 +12,14 @@ export default {
   components: {
   },
   props: {
-    coord: {
-      lat: Number,
-      lon: Number
-    }
+    coord: Object
   },
   methods: {
     loadMap () {
-      var LatLng = this.coord
+      const LatLng = {
+        lat: this.coord.lat,
+        lng: this.coord.lon
+      }
       console.log('map init with : ' + JSON.stringify(LatLng))
       GoogleMapsLoader.load(function (google) {
         /* eslint-disable no-new */
@@ -31,7 +31,10 @@ export default {
       })
     },
     udpateMap () {
-      var LatLng = this.coord
+      const LatLng = {
+        lat: this.coord.lat,
+        lng: this.coord.lon
+      }
       console.log('map upload with : ' + JSON.stringify(LatLng))
       GoogleMapsLoader.load(function (google) {
         global.map.setCenter(LatLng)
@@ -40,7 +43,6 @@ export default {
   },
   watch: {
     coord: function () {
-      console.log('updateCenter')
       this.udpateMap()
     }
   },
@@ -59,5 +61,5 @@ export default {
 	#map {
 		width: 100%;
 		height: 200px;
-	}	
+	}
 </style>

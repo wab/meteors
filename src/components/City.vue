@@ -1,21 +1,21 @@
 <template>
-
-  <section class="card">
-    <div class="card-content">
+  <div v-if="loadingData">Chargement...</div>
+  <section class="card" v-if="!loadingData">
+    <div class="card-content" >
       <header class="card-header">
         <div v-for="data in [data]" transition="slidup">
-          <h2>{{cityname}} <weather :code="weather.id" class="wpicto"></weather></h2>
+          <h2><span v-text="data.name"></span> <weather :code="data.weather[0].id" class="wpicto"></weather></h2>
         </div>
       </header>
       <div class="weather">
-        <div class="desc">{{weather.description}}</div>
+        <div class="desc" v-text="data.weather[0].description"></div>
         <div class="temperature">
           <dl>
             <dt>
               <picto name='picto-thermometer'></picto>
               <br>Température
             </dt>
-            <dd><div v-for="data in [data]" transition="slidright"><span class="stat">{{main.temp}}</span>°C</div></dd>
+            <dd><div v-for="data in [data]" transition="slidright"><span class="stat" v-text="data.main.temp"></span>°C</div></dd>
           </dl>
         </div>
         <div class="humidite">
@@ -26,9 +26,9 @@
             </dt>
             <dd>
             <div v-for="data in [data]" transition="full">
-              <div class="progress secondary" role="progressbar" tabindex="0" aria-valuenow="{{main.humidity}}" aria-valuemin="0" aria-valuetext="{{main.humidity}} percent" aria-valuemax="100">
-                <span class="progress-meter" v-bind:style="{ width: main.humidity + '%'}">
-                  <p class="progress-meter-text">{{main.humidity}}%</p>
+              <div class="progress secondary" role="progressbar" tabindex="0" aria-valuenow="{{data.main.humidity}}" aria-valuemin="0" aria-valuetext="{{data.main.humidity}} percent" aria-valuemax="100">
+                <span class="progress-meter" v-bind:style="{ width: data.main.humidity + '%'}">
+                <p class="progress-meter-text"><span v-text="data.main.humidity"></span> %</p>
                 </span>
               </div>
             </div>
@@ -41,12 +41,12 @@
               <picto name='picto-wind'></picto>
               <br>Force du vent
             </dt>
-            <dd><div v-for="data in [data]" transition="slidright"><span class="stat">{{wind.speed}}</span> mps</div></dd>
+            <dd><div v-for="data in [data]" transition="slidright"><span class="stat" v-text="data.wind.speed"></span> mps</div></dd>
           </dl>
         </div>
       </div>
     </div>
-    <map :coord.sync="LatLng"></map>
+    <map :coord.sync="data.coord"></map>
   </section>
 
 </template>
@@ -55,6 +55,8 @@
 import Map from './Map'
 import Weather from './Weather'
 import Picto from './Pictos'
+
+let data = {}
 
 export default {
   components: {
@@ -67,36 +69,17 @@ export default {
   },
   data () {
     return {
-      data: {},
-      cityname: '',
-      LatLng: {
-        lat: 0,
-        lng: 0
-      },
-      main: {
-        temp: '',
-        pressure: '',
-        humidity: ''
-      },
-      weather: {
-        id: 0,
-        main: '',
-        description: '',
-        icon: ''
-      },
-      wind: {
-        speed: '',
-        deg: ''
-      }
+      data,
+      loadingData: true
     }
   },
   methods: {
     getData: function (city) {
       // Change la requête en fonction de la ville
-      let query = `http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=fr&units=metric&appid=801c6f79c0eaf3711dbda7eb7f2676c6`
+      const query = `http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=fr&units=metric&appid=801c6f79c0eaf3711dbda7eb7f2676c6`
 
       // Récupère les données
-      let datasPromise = window.fetch(query)
+      const datasPromise = window.fetch(query)
 
       datasPromise
         // Lorsque les données sont récupérees les mettre en json
@@ -104,14 +87,7 @@ export default {
         // Lorsque les données sont en json, les dispatcher dans this.data
         .then(data => {
           this.data = data
-          this.LatLng = {
-            lat: this.data.coord.lat,
-            lng: this.data.coord.lon
-          }
-          this.weather = this.data.weather[0]
-          this.main = this.data.main
-          this.cityname = this.data.name
-          this.wind = this.data.wind
+          this.loadingData = false
         })
         // Sinon afficher err
         .catch((err) => {

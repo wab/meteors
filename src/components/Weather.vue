@@ -6,10 +6,7 @@
 import '../../bower_components/owfont/css/owfont-regular.css'
 	export default {
   props: {
-    code: {
-      type: Number,
-      default: 0
-    }
+    code: Number
   }
 	}
 </script>
