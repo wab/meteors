@@ -76,12 +76,6 @@ module.exports = {
       }
     ]
   },
-  sassLoader: {
-    includePaths: [
-      path.resolve(__dirname, '../bower_components/foundation-sites/scss/'),
-      path.resolve(__dirname, '../bower_components/font-awesome/scss/')
-    ]
-  },
   eslint: {
     formatter: require('eslint-friendly-formatter')
   },

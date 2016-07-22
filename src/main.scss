@@ -1,8 +1,8 @@
 // Sass utilities
-@import 'foundation';
+@import '~foundation-sites/scss/foundation';
 @import 'settings';
 
-@import 'font-awesome';
+@import '~font-awesome/scss/font-awesome';
 
 @include foundation-global-styles;
 @include foundation-typography;

@@ -15,8 +15,6 @@
     "tests"
   ],
   "dependencies": {
-    "font-awesome": "^4.6.3",
-    "foundation-sites": "^6.2.3",
     "owfont": "*"
   }
 }
